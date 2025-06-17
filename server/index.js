@@ -14,7 +14,7 @@ const logger = (req, res, next) => {
 }
 
 app.get('/api/alive', logger, (req, res) => {
-    res.send(req.hostname)
+    res.send(req.host)
 })
 
 app.get('/api/hello-world', (req, res, next) =>{
