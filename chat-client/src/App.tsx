@@ -1,18 +1,18 @@
-import { useEffect } from 'react'
+import { useEffect, useState} from 'react'
 import './App.css'
 
-let message = '';
-useEffect(() => {
-  fetch('/api/message')
-    .then(res => res.json())
-    .then(data => message=data)
-})
 
 function App() {
+  let [message, setMessage] = useState('')
+  const fetchData = () => {
+    fetch('/api/message')
+      .then(res => res.json())
+      .then(data => setMessage(data))
+  }
 
   return (
     <>
-      <a href="/api">CLICK</a>
+      <button onClick={fetchData}>CLICK</button>
       <strong>{message}</strong>
     </>
   )
