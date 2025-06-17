@@ -6,6 +6,12 @@ const { join } = require('node:path')
 const app = express();
 const server = Server(app);
 
+app.use(express.static(join(__dirname, '../chat-client/dist')))
+
+app.get('*', (req, res) => {
+    res.sendFile(join(__dirname, '../chat-client/dist/index.html'))
+})
+
 app.get('/', (req, res) => {
     res.send('<h1>Hello World!</h1>')
 })
