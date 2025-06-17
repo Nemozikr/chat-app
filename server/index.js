@@ -8,6 +8,15 @@ const server = Server(app);
 
 app.use(express.static(join(__dirname, '../chat-client/dist')))
 
+const logger = (req, res, next) => {
+    console.log(req.host);
+    next();
+}
+
+app.get('/api/alive', logger, (req, res) => {
+    res.send(req.hostname)
+})
+
 app.get('/api/hello-world', (req, res, next) =>{
     res.json('Hello Worls1!11!');
 })

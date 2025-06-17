@@ -9,9 +9,7 @@ function App() {
       .then(res => res.json())
       .then(data => setMessage(data))
   }
-  useEffect(() => {
-    console.log(message)
-  }, [message])
+
   return (
     <>
       <button onClick={fetchData}>CLICK</button>
