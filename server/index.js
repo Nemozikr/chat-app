@@ -19,7 +19,7 @@ app.get('/api/message', (req, res, next) =>{
     res.json('Hello Worls1!11!');
 })
 
-const PORT = process.env.PORT;
+const PORT = process.env.SERVER_PORT;
 
 
 
