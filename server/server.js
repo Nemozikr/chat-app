@@ -6,7 +6,10 @@ const { join } = require('node:path')
 const app = express();
 const server = Server(app);
 
-app.get('/api', (req, res, next) =>{
+app.get('/', (req, res) => {
+    res.send('<h1>Hello World!</h1>')
+})
+app.get('/api/message', (req, res, next) =>{
     res.json('Hello Worls1!11!');
 })
 
