@@ -8,7 +8,7 @@ const server = Server(app);
 
 app.use(express.static(join(__dirname, '../chat-client/dist')))
 
-app.get('/api/message', (req, res, next) =>{
+app.get('/api/hello-world', (req, res, next) =>{
     res.json('Hello Worls1!11!');
 })
 
