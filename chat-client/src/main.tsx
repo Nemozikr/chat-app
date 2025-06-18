@@ -4,7 +4,7 @@ import './index.css'
 import App from './App.tsx'
 
 fetch('/api/alive')
-  .then(data => console.log(data))
+  .then(res => console.log(res.text()))
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <App />
