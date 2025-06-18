@@ -1,6 +1,6 @@
 FROM node:20
 
-run npm install pnpm
+RUN npm install pnpm
 
 RUN pnpm install
 
