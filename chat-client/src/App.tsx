@@ -6,7 +6,7 @@ function App() {
   let [message, setMessage] = useState('')
   const fetchData = () => {
     fetch('/api/hello-world')
-      .then(res => res.json())
+      .then(res => res.text())
       .then(data => setMessage(data))
   }
 
