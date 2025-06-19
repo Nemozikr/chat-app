@@ -1,5 +1,7 @@
 node_modules
-chat-client/node_modules
+.pnpm-store
 dist
-build
+*.log
+Dockerfile
+.dockerignore
 .env
