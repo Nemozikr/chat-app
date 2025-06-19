@@ -10,7 +10,7 @@ const server = new Server(app);
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename);
 
-if (!PORT) PORT = process.env.SERVER_PORT || 5000;
+PORT = process.env.SERVER_PORT || 5000;
 
 
 const logger = (req, res, next) => {
