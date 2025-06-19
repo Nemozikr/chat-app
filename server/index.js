@@ -1,13 +1,16 @@
-require('dotenv').config();
-const express = require('express');
-const { Server } = require('node:http');
-const { join } = require('node:path')
+import dotenv from 'dotenv';
+dotenv.config();
+import express from 'express';
+import { Server } from ('http');
+import { join } from ('path')
 import { fileURLToPath } from 'url';
 
 const app = express();
-const server = Server(app);
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const server = new Server(app);
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename);
 
+const PORT = process.env.SERVER_PORT;
 
 
 const logger = (req, res, next) => {
