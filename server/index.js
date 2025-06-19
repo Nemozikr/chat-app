@@ -2,16 +2,24 @@ require('dotenv').config();
 const express = require('express');
 const { Server } = require('node:http');
 const { join } = require('node:path')
+import { fileURLToPath } from 'url';
 
 const app = express();
 const server = Server(app);
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-app.use(express.static(join(__dirname, '../chat-client/dist')))
+
 
 const logger = (req, res, next) => {
     console.log(req.host);
     next();
 }
+
+app.use(express.static(join(__dirname, '../chat-client/dist')))
+
+app.all('/*{splat}', (_, res) => {
+    res.sendFile(path.join(__dirname, '../chat-client/dist/index.html'));
+})
 
 app.get('/api/alive', logger, (req, res) => {
     res.send(`Server alive: ${req.host}`)
