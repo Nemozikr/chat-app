@@ -26,7 +26,7 @@ const logger = (req, res, next) => {
 app.use(express.static(path.join(__dirname, '../chat-client/dist')));
 
 
-app.all('*', (_, res) => {
+app.get('*', (_, res) => {
   res.sendFile(path.join(__dirname, '../chat-client/dist/index.html'));
 });
 
