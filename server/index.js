@@ -18,29 +18,15 @@ const logger = (req, res, next) => {
     next();
 }
 
-app.use(express.static(path.join(__dirname, '../chat-client/dist')))
 
 
 
+app.use(express.static(join(__dirname, '../chat-client/dist')));
 
 
 app.all('*', (_, res) => {
-    res.sendFile(path.join(__dirname, '../chat-client/dist/index.html'));
-})
-
-app.get('/api/alive', logger, (req, res) => {
-    res.send(`Server alive: ${req.host}`)
-})
-
-app.get('/api/hello-world', (req, res, next) =>{
-    res.json('Hello Worls1!11!');
-})
-
-const PORT = process.env.SERVER_PORT;
-
-
-
-
+  res.sendFile(path.join(__dirname, '../chat-client/dist/index.html'));
+});
 
 server.listen(PORT, () => {
     console.log(`Server listening at port:${PORT}`)
