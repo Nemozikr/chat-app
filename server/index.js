@@ -21,7 +21,7 @@ const logger = (req, res, next) => {
 app.use(express.static(path.join(__dirname, '../chat-client/dist')))
 
 
-app.use('/api', api)
+
 
 
 
