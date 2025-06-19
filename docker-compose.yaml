@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  dev:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: dev
+    ports:
+      - "5000:5000"  # Express
+      - "8080:8080"  # Vite
+    volumes:
+      - .:/usr/app
+      - /usr/app/node_modules  
+    environment:
+      - NODE_ENV=development
+      - CHOKIDAR_USEPOLLING=true
+    command: ["pnpm", "run", "dev"]
