@@ -1,8 +1,8 @@
 import dotenv from 'dotenv';
 dotenv.config();
 import express from 'express';
-import { Server } from ('http');
-import { join } from ('path')
+import { Server } from 'http';
+import { join } from 'path'
 import { fileURLToPath } from 'url';
 
 const app = express();
@@ -14,7 +14,7 @@ const PORT = process.env.SERVER_PORT;
 
 
 const logger = (req, res, next) => {
-    console.log(req.host);
+    console.log(req.hostname);
     next();
 }
 
