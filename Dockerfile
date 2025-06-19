@@ -24,36 +24,28 @@ ENV CHOKIDAR_USEPOLLING=true
     
 CMD ["pnpm", "run", "dev"]
 
-# ---------Production Build & Optimise Stage----------
-FROM base AS build-client
+# ----------Production Build Client ----------
+FROM node:alpine AS build-client
 
 WORKDIR /usr/app/chat-client
-
 COPY chat-client ./
-
 COPY package.json pnpm-lock.yaml* /usr/app/
-
-RUN pnpm install
-
-RUN pnpm run build
-
-# ------------Production Final Stage-------------------
-FROM node:alpine AS prod
-
-WORKDIR /usr/app
-
 RUN npm install -g pnpm
-
+RUN pnpm install
+RUN pnpm run build
+    
+# ---------- Final Production Container ----------
+FROM node:alpine
+    
+WORKDIR /usr/app
+    
+RUN npm install -g pnpm
 COPY package.json pnpm-lock.yaml* ./
-
 RUN pnpm install --prod
-
-COPY --from=built-client /usr/app/chat-client/dist ./chat-client/dist
-
+    
 COPY server ./server
-
+COPY --from=build-client /usr/app/chat-client/dist ./chat-client/dist
+    
 EXPOSE 5000
-
-ENV NODE_ENV=production
-
-CMD [ "node", "server/index.js" ]
+CMD ["node", "server/index.js"]
+    
