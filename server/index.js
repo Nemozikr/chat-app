@@ -24,7 +24,7 @@ app.use(express.static(path.join(__dirname, '../chat-client/dist')))
 
 
 
-app.all('/*', (_, res) => {
+app.all('*', (_, res) => {
     res.sendFile(path.join(__dirname, '../chat-client/dist/index.html'));
 })
 
