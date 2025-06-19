@@ -2,7 +2,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 import express from 'express';
 import { Server } from 'http';
-import { join } from 'path'
+import path from 'path'
 import { fileURLToPath } from 'url';
 
 const app = express();
@@ -18,7 +18,12 @@ const logger = (req, res, next) => {
     next();
 }
 
-app.use(express.static(join(__dirname, '../chat-client/dist')))
+app.use(express.static(path.join(__dirname, '../chat-client/dist')))
+
+
+app.use('/api', api)
+
+
 
 app.all('/*{splat}', (_, res) => {
     res.sendFile(path.join(__dirname, '../chat-client/dist/index.html'));
