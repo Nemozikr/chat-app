@@ -1,0 +1,11 @@
+services:
+  - type: web
+    runtime: docker
+    name: chat-app
+    plan: free
+    repo: https://github.com/Nemozikr/chat-app
+    branch: Dockerfile-attempt
+    dockerfilePath: Dockerfile
+    envVars:
+      - key: SERVER_PORT
+        value: 5000

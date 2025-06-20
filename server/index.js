@@ -1,29 +1,34 @@
-require('dotenv').config();
-const express = require('express');
-const { Server } = require('node:http');
-const { join } = require('node:path')
+import dotenv from 'dotenv';
+dotenv.config();
+
+import express from 'express';
+import { Server } from 'http';
+import path from 'path'
+import { fileURLToPath } from 'url';
 
 const app = express();
-const server = Server(app);
+const server = new Server(app);
 
-app.use(express.static(join(__dirname, '../chat-client/dist')))
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename);
+
+const PORT = process.env.SERVER_PORT || 5000;
+
 
 const logger = (req, res, next) => {
-    console.log(req.host);
+    console.log(req.hostname);
     next();
 }
 
-app.get('/api/alive', logger, (req, res) => {
-    res.send(`Server alive: ${req.host}`)
-})
-
-app.get('/api/hello-world', (req, res, next) =>{
-    res.json('Hello Worls1!11!');
-})
-
-const PORT = process.env.SERVER_PORT;
 
 
+
+app.use(express.static(path.join(__dirname, '../chat-client/dist')));
+
+
+app.use((req, res) => {
+  res.sendFile(path.join(__dirname, '../chat-client/dist/index.html'));
+});
 
 
 
