@@ -9,6 +9,7 @@ export default defineConfig({
       '/api': 'http://localhost:5000'
     },
     port: 8080,
-    strictPort: true
+    strictPort: true,
+    host: true
   }
 })

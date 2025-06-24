@@ -1,18 +1,21 @@
 name: "chat-app"
-
 services:
-  dev:
+  server:
     build:
       context: .
-      dockerfile: Dockerfile
-      target: dev
+      dockerfile: server/Dockerfile
     ports:
-      - "5000:5000"  # Express
-      - "8080:8080"  # Vite
+      - "5000:5000"
     volumes:
-      - .:/usr/app:cached
+      - ./server:/app
+      - /app/node_modules
 
-    environment:
-      - NODE_ENV=development
-      - CHOKIDAR_USEPOLLING=true
-    command: ["pnpm", "run", "dev"]
+  client:
+    build:
+      context: .
+      dockerfile: chat-client/Dockerfile
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./chat-client:/app
+      - /app/node_modules
